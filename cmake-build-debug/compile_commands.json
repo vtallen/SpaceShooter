@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/main.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/main.cpp",
+  "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/main.cpp"
+},
+{
+  "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/game.cpp",
+  "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/game.cpp"
+},
+{
+  "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/player.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/player.cpp",
+  "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/player.cpp"
+}
+]

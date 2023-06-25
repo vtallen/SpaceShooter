@@ -1,0 +1,14 @@
+# ninja log v5
+6	394	1687690160000000000	CMakeFiles/FallingBricks.dir/main.cpp.o	2582e3e0bd5bf6cd
+6	498	1687694276000000000	CMakeFiles/SwaglordsOfSpace.dir/main.cpp.o	9fa0c16e606c0ec0
+6	510	1687694276000000000	CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o	63cb6bc44fcb77bc
+5	452	1687690276000000000	CMakeFiles/FallingBricks.dir/game.cpp.o	cdd8f37b0652df6e
+452	488	1687690276000000000	FallingBricks	8da356bc547641e4
+511	555	1687694276000000000	SwaglordsOfSpace	e3f310abb203144c
+7	27	1687694779000000000	CMakeFiles/SwaglordsOfSpace.dir/player.cpp.o	4ceabc506f76c73c
+6	443	1687694779000000000	CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o	63cb6bc44fcb77bc
+443	476	1687694779000000000	SwaglordsOfSpace	e16c6a61466749c7
+6	588	1687694881000000000	CMakeFiles/SwaglordsOfSpace.dir/player.cpp.o	4ceabc506f76c73c
+6	599	1687694881000000000	CMakeFiles/SwaglordsOfSpace.dir/main.cpp.o	9fa0c16e606c0ec0
+6	622	1687694881000000000	CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o	63cb6bc44fcb77bc
+622	660	1687694881000000000	SwaglordsOfSpace	e16c6a61466749c7

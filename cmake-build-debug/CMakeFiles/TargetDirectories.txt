@@ -1,0 +1,3 @@
+/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug/CMakeFiles/SwaglordsOfSpace.dir
+/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug/CMakeFiles/rebuild_cache.dir
