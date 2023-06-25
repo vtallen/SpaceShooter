@@ -8,10 +8,17 @@ Game::Game(unsigned int width, unsigned int height) : m_width{width}, m_height{h
   m_shape.setPosition(sf::Vector2f(10.f, 10.f));
 
   initWindow();
+  m_player = new Player{};
+  m_bullets.push_back(Bullet{10.f, 10.f, 10.f});
+  m_bullets.push_back(Bullet{10.f, 10.f, 10.f});
+  m_bullets.push_back(Bullet{10.f, 10.f, 10.f});
+  m_bullets.push_back(Bullet{10.f, 10.f, 10.f});
+  m_bullets.push_back(Bullet{10.f, 10.f, 10.f});
 }
 
 Game::~Game() {
   delete m_window;
+  delete m_player;
 }
 
 // private functions
@@ -36,12 +43,15 @@ const bool Game::isRunning() const {
 void Game::update() {
   pollEvents();
   updateMousePositions();
+
+  m_player->update();
 }
 
 void Game::render() {
   m_window->clear();
   // Draw game
   m_window->draw(m_shape);
+  m_player->render(m_window);
   m_window->display();
 }
 
@@ -55,8 +65,15 @@ void Game::pollEvents() {
       case sf::Event::KeyPressed:
         if (m_ev.key.code == sf::Keyboard::Escape) m_window->close();
         break;
+      case sf::Event::Resized:
+        std::cout << m_window->getSize().x << "x" << m_window->getSize().y << '\n';
     }
   }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) m_player->move(-1, 0);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) m_player->move(1, 0);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) m_player->move(0, -1);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) m_player->move(0, 1);
 }
 
 void Game::updateMousePositions() {

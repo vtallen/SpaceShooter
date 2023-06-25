@@ -15,6 +15,7 @@
 #include <SFML/Network.hpp>
 
 #include "player.h"
+#include "bullet.h"
 
 class Game {
 private:
@@ -33,6 +34,10 @@ private:
     sf::Vector2f m_mousePosView;
 
     sf::RectangleShape m_shape{};
+
+    // Game data
+    Player *m_player{nullptr};
+    std::vector<Bullet> m_bullets;
 
     // Private functions
     void initWindow();
