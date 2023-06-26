@@ -2,10 +2,16 @@
 /*
  * Constructor / Destructor
  */
-Alien::Alien() {
+Alien::Alien(int maxHp) {
   initTexture();
   initSprite();
   m_moveSpeed = 10.f;
+
+  m_maxHp = maxHp;
+  m_hp = m_maxHp;
+
+  m_damageTimer = 0.f;
+  m_damageTimerMax = 60.f;
 }
 
 Alien::~Alien() {
@@ -32,6 +38,23 @@ const sf::Sprite &Alien::getSprite() {
   return m_sprite;
 }
 
+int Alien::getHp() {
+  return m_hp;
+}
+
+void Alien::takeDamage(int amt) {
+  if ((m_hp - amt) >= 0) {
+    m_hp -= amt;
+  } else {
+    m_hp = 0;
+  }
+  m_damageTimer = m_damageTimerMax;
+}
+
+float &Alien::getDamageTimer() {
+  return m_damageTimer;
+}
+
 /*
  * Private functions
  */
@@ -52,7 +75,10 @@ void Alien::initSprite() {
  * Public functions
  */
 void Alien::update() {
-
+  if (m_damageTimer > 0) {
+    m_damageTimer--;
+  }
+  std::cout << "Damage Timer: " << m_damageTimer << '\n';
 }
 
 void Alien::render(sf::RenderTarget *target) {

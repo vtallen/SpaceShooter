@@ -31,8 +31,12 @@ Game::Game(unsigned int width, unsigned int height) {
   m_ammoText.setFillColor(sf::Color::White);
   updateGUISize();
 
-  m_enemies.push_back(new Alien());
+  m_enemies.push_back(new Alien(10));
   m_enemies.back()->move(10.f, 10.f);
+  m_enemies.push_back(new Alien(20));
+  m_enemies.back()->move(50.f, 10.f);
+  m_enemies.push_back(new Alien(40));
+  m_enemies.back()->move(100.f, 10.f);
 }
 
 Game::~Game() {
@@ -177,10 +181,30 @@ void Game::updateGUI() {
 
 void Game::updateEnemyCollision() {
   for (int i{0}; i < m_enemies.size(); ++i) {
-    for (auto bullet : m_bullets) {
-      if (m_enemies[i]->getSprite().getGlobalBounds().intersects(bullet->getSprite().getGlobalBounds())) {
-        delete m_enemies[i];
-        m_enemies.erase(m_enemies.begin() + i);
+    for (int j{0}; j < m_bullets.size(); ++j) {
+
+      sf::FloatRect boundingBox = m_enemies[i]->getSprite().getGlobalBounds();
+      float padding = 10.f; // Set the desired padding value
+
+// Increase the size of the bounding box by the padding amount
+      boundingBox.left += 30;
+      boundingBox.top -= padding;
+      boundingBox.width -= 100;
+      boundingBox.height -= padding * 2;
+
+
+      if (boundingBox.intersects(m_bullets[j]->getSprite().getGlobalBounds())) {
+        if (m_enemies[i]->getHp() == 0) {
+          delete m_enemies[i];
+          m_enemies.erase(m_enemies.begin() + i);
+        } else {
+          if (m_enemies[i]->getDamageTimer() == 0) {
+            m_enemies[i]->takeDamage(1);
+          }
+        }
+
+        delete m_bullets[j];
+        m_bullets.erase(m_bullets.begin() + j);
       }
     }
 

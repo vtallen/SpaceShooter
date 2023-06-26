@@ -10,10 +10,16 @@ private:
     sf::Texture *m_texture;
     float m_moveSpeed;
 
+    int m_maxHp;
+    int m_hp;
+
+    float m_damageTimerMax;
+    float m_damageTimer{};
+
     void initTexture();
     void initSprite();
 public:
-    Alien();
+    Alien(int maxHp);
     virtual ~Alien();
 
     float x();
@@ -22,6 +28,13 @@ public:
     float height();
 
     const sf::Sprite &getSprite();
+
+    int getHp();
+
+    void takeDamage(int amt);
+
+    float &getDamageTimer();
+    void resetDamageTimer();
 
     void update();
     void render(sf::RenderTarget *target);
