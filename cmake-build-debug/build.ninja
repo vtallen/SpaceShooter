@@ -77,6 +77,20 @@ build CMakeFiles/SwaglordsOfSpace.dir/bullet.cpp.o: CXX_COMPILER__SwaglordsOfSpa
   OBJECT_DIR = CMakeFiles/SwaglordsOfSpace.dir
   OBJECT_FILE_DIR = CMakeFiles/SwaglordsOfSpace.dir
 
+build CMakeFiles/SwaglordsOfSpace.dir/progress_bar.cpp.o: CXX_COMPILER__SwaglordsOfSpace_Debug /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/progress_bar.cpp || cmake_object_order_depends_target_SwaglordsOfSpace
+  DEP_FILE = CMakeFiles/SwaglordsOfSpace.dir/progress_bar.cpp.o.d
+  FLAGS = -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/SwaglordsOfSpace.dir
+  OBJECT_FILE_DIR = CMakeFiles/SwaglordsOfSpace.dir
+
+build CMakeFiles/SwaglordsOfSpace.dir/alien.cpp.o: CXX_COMPILER__SwaglordsOfSpace_Debug /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/alien.cpp || cmake_object_order_depends_target_SwaglordsOfSpace
+  DEP_FILE = CMakeFiles/SwaglordsOfSpace.dir/alien.cpp.o.d
+  FLAGS = -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/SwaglordsOfSpace.dir
+  OBJECT_FILE_DIR = CMakeFiles/SwaglordsOfSpace.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SwaglordsOfSpace
@@ -85,7 +99,7 @@ build CMakeFiles/SwaglordsOfSpace.dir/bullet.cpp.o: CXX_COMPILER__SwaglordsOfSpa
 #############################################
 # Link the executable SwaglordsOfSpace
 
-build SwaglordsOfSpace: CXX_EXECUTABLE_LINKER__SwaglordsOfSpace_Debug CMakeFiles/SwaglordsOfSpace.dir/main.cpp.o CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o CMakeFiles/SwaglordsOfSpace.dir/player.cpp.o CMakeFiles/SwaglordsOfSpace.dir/bullet.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
+build SwaglordsOfSpace: CXX_EXECUTABLE_LINKER__SwaglordsOfSpace_Debug CMakeFiles/SwaglordsOfSpace.dir/main.cpp.o CMakeFiles/SwaglordsOfSpace.dir/game.cpp.o CMakeFiles/SwaglordsOfSpace.dir/player.cpp.o CMakeFiles/SwaglordsOfSpace.dir/bullet.cpp.o CMakeFiles/SwaglordsOfSpace.dir/progress_bar.cpp.o CMakeFiles/SwaglordsOfSpace.dir/alien.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   FLAGS = -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib  /opt/homebrew/lib/libsfml-audio.2.5.1.dylib  /opt/homebrew/lib/libsfml-network.2.5.1.dylib  /opt/homebrew/lib/libsfml-window.2.5.1.dylib  /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   OBJECT_DIR = CMakeFiles/SwaglordsOfSpace.dir

@@ -16,6 +16,12 @@ public:
   Player();
   virtual ~Player();
 
+  float x();
+  float y();
+  float width();
+  float height();
+
+  const sf::Sprite &getSprite();
   void update();
   void render(sf::RenderTarget *target);
 

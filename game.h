@@ -15,7 +15,9 @@
 #include <SFML/Network.hpp>
 
 #include "player.h"
+#include "alien.h"
 #include "bullet.h"
+#include "progress_bar.h"
 
 class Game {
 private:
@@ -24,37 +26,53 @@ private:
     sf::VideoMode m_videoMode;
     sf::Event m_ev;
 
-    const sf::Vector2f m_refRes{1920.f, 1080.f};
-
-    unsigned int m_width;
-    unsigned int m_height;
+    sf::Vector2u m_initRes;
+    sf::Vector2u m_currentRes;
 
     // Mouse Position
     sf::Vector2i m_mousePosWindow;
     sf::Vector2f m_mousePosView;
 
-    sf::RectangleShape m_shape{};
+    // GUI data
+    ProgressBar m_ammoBar;
+    sf::Font m_font;
+    sf::Text m_ammoText;
 
     // Game data
     Player *m_player{nullptr};
-    std::vector<Bullet> m_bullets;
+    std::vector<Bullet*> m_bullets;
+    std::vector<Alien*>m_enemies;
+
+    int m_ammo{};
+    int m_maxAmmo{};
+    float m_ammoReloadTimer{};
+    float m_ammoReloadTimerMax{};
 
     // Private functions
     void initWindow();
-
+    void updateGUISize();
+    void snapWindowToAspectRatio(const sf::Vector2u& newSize);
 
 public:
     // Constructors / Destructors
     Game(unsigned int width, unsigned int height);
     virtual ~Game();
 
-    // Functions
-    void update();
-    void render();
-    void updateMousePositions();
-    void pollEvents();
     // Getters
-    const bool isRunning() const;
+    [[nodiscard]] bool isRunning() const;
+
+    // Functions
+    void pollEvents();
+    void updateShooting();
+    void updateMousePositions();
+    void updateEnemies();
+    void updateEnemyCollision();
+    void updateGUI();
+    void update();
+
+
+    void render();
+    void renderGUI();
 };
 
 

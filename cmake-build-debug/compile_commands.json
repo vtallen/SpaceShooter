@@ -18,5 +18,15 @@
   "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/bullet.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/bullet.cpp",
   "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/bullet.cpp"
+},
+{
+  "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/progress_bar.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/progress_bar.cpp",
+  "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/progress_bar.cpp"
+},
+{
+  "directory": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/cmake-build-debug",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/usr/local/include -isystem /opt/homebrew/include  -std=c++20 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -o CMakeFiles/SwaglordsOfSpace.dir/alien.cpp.o -c /Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/alien.cpp",
+  "file": "/Volumes/External/Nextcloud/Programming/SFML/SwaglordsOfSpace/alien.cpp"
 }
 ]

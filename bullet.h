@@ -20,12 +20,16 @@ private:
 
 public:
   Bullet() = default;
-  Bullet(float dirX, float dirY, float moveSpeed);
+  Bullet(float dirX, float dirY, float x, float y, float moveSpeed);
   Bullet(const Bullet &bullet);
-  Bullet &operator=(const Bullet &bullet) = delete;
+  Bullet &operator=(const Bullet &bullet);
   virtual ~Bullet();
 
+  const sf::Sprite &getSprite();
+  const sf::Vector2f getPos();
+
   void update();
+  void updateBullets();
   void render(sf::RenderTarget *target);
 
 
