@@ -18,8 +18,16 @@ Game::Game(unsigned int width, unsigned int height) {
 
   m_ammoReloadTimerMax = 50.f;
   m_ammoReloadTimer = m_ammoReloadTimerMax;
-  m_maxAmmo = 500;
-  m_ammo = 455;
+  m_maxAmmo = 50;
+  m_ammo = 20;
+  m_shootingCooldownMax = 20.f;
+  m_shootingCooldown = 0;
+
+  m_maxHealth = 10;
+  m_health = m_maxHealth;
+
+  m_maxLives = 3;
+  m_lives = m_maxLives;
 
   // load fonts
   if (!m_font.loadFromFile("../Minecraft.ttf")) {
@@ -50,6 +58,10 @@ Game::~Game() {
 // Getters
 bool Game::isRunning() const {
   return m_window->isOpen();
+}
+
+bool Game::isEndGame() const {
+  return (m_health == 0) && (m_lives == 0);
 }
 
 // private functions
@@ -110,14 +122,13 @@ void Game::update() {
   pollEvents();
   updateMousePositions();
   updateShooting();
-
   m_player->update();
-  for (auto bullet : m_bullets) {
-    bullet->update();
-  }
+
+  for (auto bullet : m_bullets) bullet->update();
   for (auto &i : m_enemies) i->update();
 
   updateEnemyCollision();
+
   updateGUI();
 }
 
@@ -140,16 +151,15 @@ void Game::pollEvents() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) m_player->move(0.5, 0);
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) m_player->move(0, -1);
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) m_player->move(0, 1);
-
 }
 
 void Game::updateShooting() {
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_ammo > 0) {
+  if ((sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) && (m_ammo > 0) && (m_shootingCooldown == 0)) {
     m_bullets.push_back(new Bullet{0.f, -1.f, m_player->x() + 32, m_player->y() - 32, 10});
     --m_ammo;
     if (m_ammo == 0) m_ammoReloadTimer = m_ammoReloadTimerMax;
+    m_shootingCooldown = m_shootingCooldownMax;
   } else {
-
     if (m_ammo < m_maxAmmo) {
       if (m_ammoReloadTimer == 0) {
         ++m_ammo;
@@ -158,6 +168,10 @@ void Game::updateShooting() {
         //std::cout << "Decrementing timer: " << m_ammoReloadTimer << '\n';
         --m_ammoReloadTimer;
       }
+    }
+
+    if (m_shootingCooldown > 0) {
+      --m_shootingCooldown;
     }
   }
 
@@ -181,18 +195,16 @@ void Game::updateGUI() {
 
 void Game::updateEnemyCollision() {
   for (int i{0}; i < m_enemies.size(); ++i) {
-    for (int j{0}; j < m_bullets.size(); ++j) {
-
-      sf::FloatRect boundingBox = m_enemies[i]->getSprite().getGlobalBounds();
-      float padding = 10.f; // Set the desired padding value
+    sf::FloatRect boundingBox = m_enemies[i]->getSprite().getGlobalBounds();
+    float padding = 10.f; // Set the desired padding value
 
 // Increase the size of the bounding box by the padding amount
-      boundingBox.left += 30;
-      boundingBox.top -= padding;
-      boundingBox.width -= 100;
-      boundingBox.height -= padding * 2;
+    boundingBox.left += 30;
+    boundingBox.top -= padding;
+    boundingBox.width -= 60;
+    boundingBox.height -= padding * 2;
 
-
+    for (int j{0}; j < m_bullets.size(); ++j) {
       if (boundingBox.intersects(m_bullets[j]->getSprite().getGlobalBounds())) {
         if (m_enemies[i]->getHp() == 0) {
           delete m_enemies[i];
@@ -208,21 +220,26 @@ void Game::updateEnemyCollision() {
       }
     }
 
-    if (m_enemies[i]->getSprite().getGlobalBounds().intersects(m_player->getSprite().getGlobalBounds())) {
-      // Kill the player, end the game
+    if (boundingBox.intersects(m_player->getSprite().getGlobalBounds())) {
+      delete m_enemies[i];
+      m_enemies.erase(m_enemies.begin() + i);
+      --m_lives;
+
+      std::cout << "INTERSECTION, Lives: " << m_lives << '\n';
     }
+
   }
 }
 
 void Game::render() {
   m_window->clear();
+
   // Draw game
-  for (auto bullet : m_bullets) {
-    bullet->render(m_window);
-  }
   m_player->render(m_window);
+  for (auto bullet : m_bullets) bullet->render(m_window);
   for (auto &i : m_enemies) i->render(m_window);
   renderGUI();
+
   m_window->display();
 }
 

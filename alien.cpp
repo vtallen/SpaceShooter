@@ -11,7 +11,7 @@ Alien::Alien(int maxHp) {
   m_hp = m_maxHp;
 
   m_damageTimer = 0.f;
-  m_damageTimerMax = 60.f;
+  m_damageTimerMax = 30.f;
 }
 
 Alien::~Alien() {
@@ -78,7 +78,6 @@ void Alien::update() {
   if (m_damageTimer > 0) {
     m_damageTimer--;
   }
-  std::cout << "Damage Timer: " << m_damageTimer << '\n';
 }
 
 void Alien::render(sf::RenderTarget *target) {

@@ -2,6 +2,13 @@
  * Class that is responsible for the game engine
  */
 
+/*
+ * TODO
+ * - Make the lives display in the bottom right corner
+ * - Make the enemies move down the screen and delete when reaching the end
+ * - Handle both the win and lose conditions
+ */
+
 #ifndef HELLOSFML_GAME_H
 #define HELLOSFML_GAME_H
 #include <iostream>
@@ -43,10 +50,21 @@ private:
     std::vector<Bullet*> m_bullets;
     std::vector<Alien*>m_enemies;
 
+    // Variables for shooting
     int m_ammo{};
     int m_maxAmmo{};
     float m_ammoReloadTimer{};
     float m_ammoReloadTimerMax{};
+    float m_shootingCooldownMax{};
+    float m_shootingCooldown{};
+
+    // Lives is how many ships can be destroyed.
+    int m_maxLives{};
+    int m_lives{};
+
+    // Health is how many ships can reach the end before the game is over
+    int m_maxHealth{};
+    int m_health{};
 
     // Private functions
     void initWindow();
@@ -60,7 +78,7 @@ public:
 
     // Getters
     [[nodiscard]] bool isRunning() const;
-
+    bool isEndGame() const;
     // Functions
     void pollEvents();
     void updateShooting();
