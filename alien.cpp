@@ -11,7 +11,21 @@ Alien::Alien(int maxHp) {
   m_hp = m_maxHp;
 
   m_damageTimer = 0.f;
+  m_damageTimerMax = 2.f;
+}
+
+Alien::Alien(int maxHp, float x, float y) {
+  initTexture();
+  initSprite();
+  m_moveSpeed = 10.f;
+
+  m_maxHp = maxHp;
+  m_hp = m_maxHp;
+
+  m_damageTimer = 0.f;
   m_damageTimerMax = 30.f;
+
+  m_sprite.setPosition(x, y);
 }
 
 Alien::~Alien() {

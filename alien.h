@@ -20,6 +20,7 @@ private:
     void initSprite();
 public:
     Alien(int maxHp);
+    Alien(int maxHp, float x, float y);
     virtual ~Alien();
 
     float x();

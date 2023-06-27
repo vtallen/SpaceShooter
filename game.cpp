@@ -16,11 +16,11 @@ Game::Game(unsigned int width, unsigned int height) {
   // Init the game elements
   m_player = new Player{};
 
-  m_ammoReloadTimerMax = 50.f;
+  m_ammoReloadTimerMax = 20.f;
   m_ammoReloadTimer = m_ammoReloadTimerMax;
   m_maxAmmo = 50;
   m_ammo = 20;
-  m_shootingCooldownMax = 20.f;
+  m_shootingCooldownMax = 15.f;
   m_shootingCooldown = 0;
 
   m_maxHealth = 10;
@@ -28,6 +28,9 @@ Game::Game(unsigned int width, unsigned int height) {
 
   m_maxLives = 3;
   m_lives = m_maxLives;
+
+  m_maxEnemies = 10;
+  m_numEnemies = 0;
 
   // load fonts
   if (!m_font.loadFromFile("../Minecraft.ttf")) {
@@ -39,12 +42,6 @@ Game::Game(unsigned int width, unsigned int height) {
   m_ammoText.setFillColor(sf::Color::White);
   updateGUISize();
 
-  m_enemies.push_back(new Alien(10));
-  m_enemies.back()->move(10.f, 10.f);
-  m_enemies.push_back(new Alien(20));
-  m_enemies.back()->move(50.f, 10.f);
-  m_enemies.push_back(new Alien(40));
-  m_enemies.back()->move(100.f, 10.f);
 }
 
 Game::~Game() {
@@ -52,7 +49,7 @@ Game::~Game() {
   delete m_player;
 
   for (auto bullet : m_bullets) delete bullet;
-  for (auto enemy : m_enemies) delete enemy;
+  for (auto enemy: m_enemies) delete enemy;
 }
 
 // Getters
@@ -123,9 +120,10 @@ void Game::update() {
   updateMousePositions();
   updateShooting();
   m_player->update();
+  updateEnemies();
 
   for (auto bullet : m_bullets) bullet->update();
-  for (auto &i : m_enemies) i->update();
+  for (auto enemy: m_enemies) enemy->update();
 
   updateEnemyCollision();
 
@@ -193,6 +191,24 @@ void Game::updateGUI() {
 }
 
 
+void Game::updateEnemies() {
+  if (m_numEnemies < m_maxEnemies) {
+    ++m_numEnemies;
+    unsigned int minX{20};
+    unsigned int maxX{m_window->getSize().x - 100};
+
+    unsigned int minY{0};
+    unsigned int maxY{m_window->getSize().y - 400};
+
+    unsigned int randX{minX + (rand() % (maxX - minX) + 1)};
+    unsigned int randY{minY + (rand() % (maxY - minY + 1))};
+
+    m_enemies.push_back(new Alien{5, static_cast<float>(randX), static_cast<float>(randY)});
+  }
+
+  for (auto enemy : m_enemies) enemy->move(0.f, 0.01);
+}
+
 void Game::updateEnemyCollision() {
   for (int i{0}; i < m_enemies.size(); ++i) {
     sf::FloatRect boundingBox = m_enemies[i]->getSprite().getGlobalBounds();
@@ -209,6 +225,7 @@ void Game::updateEnemyCollision() {
         if (m_enemies[i]->getHp() == 0) {
           delete m_enemies[i];
           m_enemies.erase(m_enemies.begin() + i);
+          --m_numEnemies;
         } else {
           if (m_enemies[i]->getDamageTimer() == 0) {
             m_enemies[i]->takeDamage(1);
@@ -224,6 +241,7 @@ void Game::updateEnemyCollision() {
       delete m_enemies[i];
       m_enemies.erase(m_enemies.begin() + i);
       --m_lives;
+      --m_numEnemies;
 
       std::cout << "INTERSECTION, Lives: " << m_lives << '\n';
     }
@@ -247,6 +265,7 @@ void Game::renderGUI() {
   m_ammoBar.render(m_window);
   m_window->draw(m_ammoText);
 }
+
 
 
 

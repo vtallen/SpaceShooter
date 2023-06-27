@@ -44,11 +44,14 @@ private:
     ProgressBar m_ammoBar;
     sf::Font m_font;
     sf::Text m_ammoText;
+    sf::Text m_levelText;
+
+    ProgressBar m_health;
 
     // Game data
     Player *m_player{nullptr};
     std::vector<Bullet*> m_bullets;
-    std::vector<Alien*>m_enemies;
+    std::vector<Alien*> m_enemies;
 
     // Variables for shooting
     int m_ammo{};
@@ -65,6 +68,10 @@ private:
     // Health is how many ships can reach the end before the game is over
     int m_maxHealth{};
     int m_health{};
+
+    // Max number of enemies and current number of enemies
+    int m_maxEnemies{};
+    int m_numEnemies{};
 
     // Private functions
     void initWindow();
